@@ -1,0 +1,496 @@
+/* Reset & Font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #8FBC8F; /* Hijau Sage */
+    --secondary-color: #ffe4e1; /* Pink Lembut */
+    --accent-color: #556b2f; /* Hijau Olive Tua */
+    --text-dark: #333;
+    --bg-light: #fdfdfd;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- DEKORASI BACKGROUND (BLOBS) --- */
+.blob-cont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Di belakang semua konten */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* Efek blur estetik */
+    opacity: 0.4;
+    animation: moveBlob 20s infinite alternate;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: var(--secondary-color);
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: #e0f2e0; /* Hijau sangat muda */
+    animation-delay: -10s;
+}
+
+@keyframes moveBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* --- NAVBAR (GLASSMORPHISM) --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: rgba(255, 255, 255, 0.85); /* Transparan */
+    backdrop-filter: blur(10px); /* Efek kaca buram */
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* Efek garis bawah saat hover di menu */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-dark);
+    margin: 5px;
+    transition: 0.3s;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 5%;
+}
+
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    z-index: 2;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-image-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-image-box img {
+    width: 380px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero h3 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8rem;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    line-height: 1.1;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.05); /* Sedikit bayangan teks */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.typing-text {
+    color: var(--primary-color);
+    font-weight: 600;
+    border-right: 3px solid var(--text-dark);
+    padding-right: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: var(--text-dark); } }
+
+.btn-primary {
+    padding: 12px 35px;
+    background: linear-gradient(45deg, var(--primary-color), #a2d5a2); /* Gradien tombol */
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: 0.3s;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(143, 188, 143, 0.4);
+    border: none;
+    font-weight: 500;
+}
+.btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(143, 188, 143, 0.6);
+}
+
+/* --- SECTION UMUM --- */
+.container {
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+/* Garis bawah dekoratif judul */
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 10px;
+    background-color: var(--secondary-color);
+    bottom: 2px;
+    left: 20%;
+    z-index: -1;
+    opacity: 0.7;
+    border-radius: 5px;
+}
+
+.about-content p {
+    line-height: 1.9;
+    color: #555;
+    max-width: 750px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+}
+
+/* --- TIMELINE CV --- */
+.cv-section {
+    background-color: rgba(255, 255, 255, 0.6); /* Semi transparan */
+    backdrop-filter: blur(5px);
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 28px;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    padding-left: 60px;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 19px;
+    top: 5px;
+    background-color: #fff;
+    border: 4px solid var(--primary-color);
+    border-radius: 50%;
+    z-index: 2;
+    transition: all 0.3s;
+}
+
+.timeline-item:hover .timeline-dot {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.timeline-date {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #555;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.timeline-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    border-left: 4px solid var(--accent-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.timeline-content h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.timeline-content h4 {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.btn-secondary {
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-weight: 600;
+}
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #fff0f3; /* Pink lebih terang */
+    padding: 60px 20px 30px;
+    text-align: center;
+    position: relative;
+}
+
+.contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+/* Styling Lokasi Baru */
+.location-box {
+    margin-bottom: 25px;
+    color: #666;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.location-box i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.socials {
+    margin-bottom: 30px;
+}
+
+.socials a {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.socials a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 20px;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* --- SCROLL REVEAL ANIMATION CLASS --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Mobile Update */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 60px;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .burger {
+        display: block;
+    }
+
+    .hero-wrapper {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-image-box img {
+        width: 250px;
+        height: 250px;
+    }
+
+    .container {
+        padding: 60px 5%;
+    }
+}
